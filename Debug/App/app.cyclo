@@ -1,0 +1,7 @@
+../App/app.c:13:9:IntfRead	1
+../App/app.c:20:9:IntfWrite	1
+../App/app.c:62:13:InitI2c	1
+../App/app.c:75:16:I2cDetectAddresses	6
+../App/app.c:99:16:ReadAccelerometer	1
+../App/app.c:109:6:app_Init	5
+../App/app.c:137:6:app_ProcessLoop	1
