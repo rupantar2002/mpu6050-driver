@@ -3,20 +3,32 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_gpio.h"
+#include "stm32f4xx_hal_i2c.h"
+
+
 
 typedef struct{
-	uint8_t i2cPort;
-	int32_t sclGpio;
-	int32_t sdaGpio;
-	bool sclPullupEnable;
-	bool sdaPullupEnable;
-}mpu6050_port_i2c_config_t;
+	I2C_HandleTypeDef i2cHandle;
+}mpu6050_port_t;
+
+typedef struct{
+	I2C_TypeDef i2cPort;
+	uint32_t clockSpeed;
+//	GPIO_TypeDef sclGpio;
+//	GPIO_TypeDef sdaGpio;
+//	bool sclPullupEnable;
+//	bool sdaPullupEnable;
+}mpu6050_port_config_t;
 
 
-void mpu6050_port_I2cInit(const mpu6050_port_i2c_config_t *pConfig);
+void mpu6050_port_Init(mpu6050_port_t *const pHandle,mpu6050_port_config_t *const pConfig);
 
-//void mpu6050_port_I2cReadMemory()
+int32_t mpu6050_port_ReadMemory(mpu6050_port_t *const pHandle,uint8_t registerAddr,uint8_t *const buffer,uint16_t len);
 
-void mpu6050_port_I2cReset(void);
+int32_t mpu6050_port_WriteMemory(mpu6050_port_t *const pHandle,uint8_t registerAddr,uint8_t *const buffer,uint16_t len);
+
+void mpu6050_port_I2cReset(mpu6050_port_t *const pHandle);
 
 #endif //__MPU6050_PORT_H__

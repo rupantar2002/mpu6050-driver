@@ -30,7 +30,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hcd.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
  ../USB_HOST/App/usb_host.h \
- C:/Users/2jbha/Documents/stm32/test_project/App/app.h
+ C:/Users/2jbha/Documents/Repositories/mpu6050-driver/repo/stm32-dev/mpu6050-driver/App/app.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -63,4 +63,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hcd.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h:
 ../USB_HOST/App/usb_host.h:
-C:/Users/2jbha/Documents/stm32/test_project/App/app.h:
+C:/Users/2jbha/Documents/Repositories/mpu6050-driver/repo/stm32-dev/mpu6050-driver/App/app.h:

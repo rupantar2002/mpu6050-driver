@@ -39,34 +39,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := test_project
+BUILD_ARTIFACT_NAME := mpu6050-driver
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-test_project.elf \
+mpu6050-driver.elf \
 
 MAP_FILES += \
-test_project.map \
+mpu6050-driver.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-test_project.list \
+mpu6050-driver.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: test_project.elf secondary-outputs
+main-build: mpu6050-driver.elf secondary-outputs
 
 # Tool invocations
-test_project.elf test_project.map: $(OBJS) $(USER_OBJS) C:\Users\2jbha\Documents\stm32\test_project\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "test_project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\2jbha\Documents\stm32\test_project\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test_project.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+mpu6050-driver.elf mpu6050-driver.map: $(OBJS) $(USER_OBJS) C:\Users\2jbha\Documents\Repositories\mpu6050-driver\repo\stm32-dev\mpu6050-driver\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "mpu6050-driver.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\2jbha\Documents\Repositories\mpu6050-driver\repo\stm32-dev\mpu6050-driver\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="mpu6050-driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -75,14 +75,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-test_project.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "test_project.list"
+mpu6050-driver.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "mpu6050-driver.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout test_project.elf test_project.list test_project.map
+	-$(RM) default.size.stdout mpu6050-driver.elf mpu6050-driver.list mpu6050-driver.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

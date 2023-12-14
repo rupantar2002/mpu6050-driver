@@ -1,7 +1,6 @@
 "./App/app.o"
 "./App/mpu6050.o"
 "./App/mpu6050_port.o"
-"./App/mpu6050_reg.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32f4xx_hal_msp.o"
 "./Core/Src/stm32f4xx_it.o"
