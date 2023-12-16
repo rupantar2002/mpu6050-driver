@@ -16,7 +16,7 @@
 /**
  * Default I2c address for device.
  */
-#define MPU6050_I2C_ADDR_DEFAULT MPU6050_REG_I2C_ADDR_AD0_L
+#define MPU6050_I2C_ADDR_DEFAULT MPU6050_I2C_ADDR_AD0_L
 
 #ifndef DRV_BYTE_ORDER
 
@@ -40,6 +40,7 @@
 #endif /* __BYTE_ORDER__*/
 #endif /* DRV_BYTE_ORDER */
 
+
 /**
  * WHO_AM_I register location value should be 0x68 for mpu6050 devices.
  */
@@ -55,31 +56,31 @@
  * This register stores the upper byte of X axis
  * acceleration value.
  */
-#define MPU6050_ACEL_XOUT_H (0x3B)
+#define MPU6050_ACCEL_XOUT_H (0x3B)
 
 /**
  * This register stores the lower byte of X axis
  * acceleration value.
  */
-#define MPU6050_ACEL_XOUT_L (0x3C)
+#define MPU6050_ACCEL_XOUT_L (0x3C)
 
 /**
  * This register stores the upper byte of Y axis
  * acceleration value.
  */
-#define MPU6050_ACEL_YOUT_H (0x3D)
+#define MPU6050_ACCEL_YOUT_H (0x3D)
 
 /**
  * This register stores the lower byte of Y axis
  * acceleration value.
  */
-#define MPU6050_ACEL_YOUT_L (0x3E)
+#define MPU6050_ACCEL_YOUT_L (0x3E)
 
 /**
  * This register stores the upper byte of Z axis
  * acceleration value.
  */
-#define MPU6050_ACEL_ZOUT_H (0x3F)
+#define MPU6050_ACCEL_ZOUT_H (0x3F)
 
 /**
  * This register stores the lower byte of Z axis
@@ -227,7 +228,7 @@ typedef enum {
 	MPU6050_ACCEL_FS_4G = 1, /*<! Accelerometer full scale +/-4g */
 	MPU6050_ACCEL_FS_8G = 2, /*<! Accelerometer full scale +/-8g */
 	MPU6050_ACCEL_FS_16G = 3, /*<! Accelerometer full scale +/-16g */
-} mpu6050_accelFs_t;
+} mpu6050_accel_fs_t;
 
 /**
  * Structure contains accel config register bits.

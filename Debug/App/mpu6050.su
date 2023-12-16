@@ -1,0 +1,11 @@
+../App/mpu6050.c:6:16:ReadMemory	48	static
+../App/mpu6050.c:22:16:WriteMemory	48	static
+../App/mpu6050.c:38:9:mpu6050_Init	32	static
+../App/mpu6050.c:62:9:mpu6050_Reset	24	static
+../App/mpu6050.c:79:9:mpu6050_GetTemperature	32	static
+../App/mpu6050.c:98:9:mpu6050_GetAccelerometerScale	24	static
+../App/mpu6050.c:113:9:mpu6050_SetAccelerometerScale	24	static
+../App/mpu6050.c:147:9:mpu6050_GetRawAcceleration	72	static
+../App/mpu6050.c:170:9:mpu6050_GetGyroscopeScale	24	static
+../App/mpu6050.c:188:9:mpu6050_SetGyroscopeScale	24	static
+../App/mpu6050.c:222:9:mpu6050_GetRawGyroscope	72	static

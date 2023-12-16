@@ -1,0 +1,4 @@
+../App/mpu6050_port.c:4:6:mpu6050_port_Init	16	static
+../App/mpu6050_port.c:23:9:mpu6050_port_ReadMemory	40	static
+../App/mpu6050_port.c:32:9:mpu6050_port_WriteMemory	40	static
+../App/mpu6050_port.c:41:6:mpu6050_port_Reset	16	static

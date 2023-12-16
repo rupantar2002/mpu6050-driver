@@ -8,7 +8,7 @@
 #include <string.h>
 
 //mpu6050
-#include "mpu6050_reg.h"
+#include "mpu6050.h"
 
 int32_t IntfRead(void *handle, uint8_t addr, uint8_t reg_addr,
 		uint8_t *const data, uint16_t len) {
@@ -99,43 +99,58 @@ static uint8_t I2cDetectAddresses(void) {
 static uint8_t ReadAccelerometer(uint8_t addr, int *arr) {
 	uint8_t data[6] = { 0 };
 	int16_t accelX = 0, accelY = 0, accelZ = 0;
-	IntfRead(&gI2cIns, addr, MPU6050_ACEL_XOUT_H,data, 6);
+	IntfRead(&gI2cIns, addr, MPU6050_ACCEL_XOUT_H, data, 6);
 	accelX = ((data[0] << 8) | data[1]);
 	accelY = ((data[2] << 8) | data[3]);
 	accelZ = ((data[4] << 8) | data[5]);
 	printf("{accelX: %d, accelY: %d,accelZ: %d}\r\n", accelX, accelY, accelZ);
 }
 
+static mpu6050_t mpu6050;
+
 void app_Init(void) {
 	printf("--------MPU6050-------------\r\n");
 	InitI2c();
-	// MPU6050
-	uint8_t addr = 0xff;
-	addr = I2cDetectAddresses();
-	if (addr > 0 && addr < 0xff)
-		printf("I2c addr-> 0x%02x\r\n", addr);
-	else
-		return;
+	float temperature = 0.0f;
+	mpu6050_Init(&mpu6050, 0, &gI2cIns);
+	mpu6050_Reset(&mpu6050);
+	mpu6050_GetAccelerometerScale(&mpu6050, NULL);
+	mpu6050_SetAccelerometerScale(&mpu6050, MPU6050_ACCEL_FS_4G);
+	mpu6050_GetAccelerometerScale(&mpu6050, NULL);
+	mpu6050_GetGyroscopeScale(&mpu6050, NULL);
+	mpu6050_SetGyroscopeScale(&mpu6050, MPU6050_GYRO_FS_500_DEG_PER_SEC);
+	mpu6050_GetGyroscopeScale(&mpu6050, NULL);
 
-	// read WHO_AM_I
-	uint8_t whoAmI = 0x00;
-	if (IntfRead(&gI2cIns, (addr << 1), MPU6050_WHO_AM_I, &whoAmI, 1) == 0
-			&& whoAmI == 0x68) {
-		gAddress = addr;
-		printf("MPU6050 device\r\n");
-	} else {
-		printf("no device\r\n");
-		return;
-	}
+//
+//	// MPU6050
+//	uint8_t addr = 0xff;
+//	addr = I2cDetectAddresses();
+//	if (addr > 0 && addr < 0xff)
+//		printf("I2c addr-> 0x%02x\r\n", addr);
+//	else
+//		return;
+//
+//	// read WHO_AM_I
+//	uint8_t whoAmI = 0x00;
+//	if (IntfRead(&gI2cIns, (addr << 1), MPU6050_WHO_AM_I, &whoAmI, 1) == 0
+//			&& whoAmI == 0x68) {
+//		gAddress = addr;
+//		printf("MPU6050 device\r\n");
+//	} else {
+//		printf("no device\r\n");
+//		return;
+//	}
 
-	// reset device
-	mpu6050_pwr_mgmt_1_t data = { 0 };
-	IntfWrite(&gI2cIns, (addr << 1), MPU6050_PWR_MGMT_1, &data, 1);
+//	// reset device
+//	mpu6050_pwr_mgmt_1_t data = { 0 };
+//	IntfWrite(&gI2cIns, (addr << 1), MPU6050_PWR_MGMT_1, &data, 1);
 
 }
 
 void app_ProcessLoop(void) {
-	ReadAccelerometer((gAddress << 1), NULL);
+	mpu6050_GetTemperature(&mpu6050, NULL);
+	mpu6050_GetRawAcceleration(&mpu6050, NULL);
+	mpu6050_GetRawGyroscope(&mpu6050, NULL);
 	HAL_Delay(100);
 }
 
